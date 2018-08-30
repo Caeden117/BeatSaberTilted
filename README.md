@@ -1,6 +1,4 @@
-<video controls>
-	<source src="https://i.imgur.com/CFesqPf.mp4" type="video/mp4">
-</video>
+<blockquote class="imgur-embed-pub" lang="en" data-id="CFesqPf"><a href="//imgur.com/CFesqPf">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 # Tilted - A Beat Saber Plugin
 A plugin that fucks up the scene when you fuck up. *This plugin may crash the game when exiting the level.*
