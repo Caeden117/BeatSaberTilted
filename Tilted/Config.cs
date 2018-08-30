@@ -84,7 +84,7 @@ Avoiding filters can and WILL make Beat Saber unplayable.
                 return new ConfigInfo("");
             }
             else
-                return new ConfigInfo(enabled, nameof(mode), scalar, avoidCameras, avoidFilters);
+                return new ConfigInfo(enabled, mode.ToString(), scalar, avoidCameras, avoidFilters);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Tilted
             public ShakeEvent(ShakeDetail data)
             {
                 this.data = data;
-                duration = data.amplitude / 4;
+                duration = data.amplitude;
                 timeRemaining = duration;
 
                 float rand = 32.0f;
@@ -60,9 +60,9 @@ namespace Tilted
             events.Add(new ShakeEvent(data));
         }
 
-        public void AddShakeEvent(float amplitude, float scalar)
+        public void AddShakeEvent(float scalar)
         {
-            ShakeDetail data = new ShakeDetail(amplitude, scalar);
+            ShakeDetail data = new ShakeDetail(scalar);
             events.Add(new ShakeEvent(data));
         }
 
@@ -81,7 +81,7 @@ namespace Tilted
                 if (!sc.isAlive()) events.RemoveAt(i);
             }
 
-            transform.localPosition = posOffset;
+            //transform.localPosition = posOffset;
             transform.localEulerAngles = rotOffset;
         }
     }

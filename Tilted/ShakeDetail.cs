@@ -17,9 +17,9 @@ namespace Tilted
             new Keyframe(1.0f, 0.0f)
         );
 
-        public ShakeDetail(float amp, float scalar)
+        public ShakeDetail(float scalar)
         {
-            amplitude = amp;
+            amplitude = scalar;
             frequency = scalar;
         }
     }
