@@ -12,8 +12,8 @@ namespace Tilted
     {
         public bool enabled;
         public float scalar;
-        public bool extremeMode;
-        public bool avoidCameras;
+        public bool avoidFilters;
+        public bool includeCameras;
         public enum tiltedModes { standard, shakecamera };
         public tiltedModes tiltedMode;
 
@@ -21,8 +21,8 @@ namespace Tilted
         {
             enabled = true;
             scalar = 10;
-            extremeMode = false;
-            avoidCameras = true;
+            avoidFilters = false;
+            includeCameras = true;
             tiltedMode = tiltedModes.standard;
         }
 
@@ -30,8 +30,8 @@ namespace Tilted
         {
             enabled = isEnabled;
             scalar = tiltedScalar;
-            extremeMode = avoidFilters;
-            avoidCameras = skipCameras;
+            this.avoidFilters = avoidFilters;
+            includeCameras = skipCameras;
             tiltedMode = (tiltedModes)Enum.Parse(typeof(tiltedModes), mode);
         }
     }
@@ -47,21 +47,19 @@ scalar|10
 includeCameras|false
 avoidFiltersBecauseYouAreAFuckingMadManAndItWillMakeBeatSaberUnplayable|false
 
-Using this plugin will sometimes crash Beat Saber when exiting a level. I have no idea how to find a solution for this issue.
-Avoiding filters can and WILL make Beat Saber unplayable.
 
-";
+
+
+
+Using this plugin will sometimes crash Beat Saber when exiting a level. I have no idea how to find a solution for this issue.
+Avoiding filters can and WILL make Beat Saber unplayable.";  //Lots of spaces for future config options
 
         public static string fullPath => Environment.CurrentDirectory.Replace('\\', '/') + FILE_PATH;
 
         public static ConfigInfo load()
         {
+            ConfigInfo info = new ConfigInfo();
             bool isParsed = true;
-            bool enabled;
-            ConfigInfo.tiltedModes mode;
-            float scalar;
-            bool avoidFilters;
-            bool avoidCameras;
             Console.WriteLine("[Tilted] Loading config file...");
             if (!File.Exists(fullPath))
             {
@@ -71,20 +69,20 @@ Avoiding filters can and WILL make Beat Saber unplayable.
                 return new ConfigInfo("");
             }
             string[] config = File.ReadAllLines(fullPath);
-            if (!bool.TryParse(config[0].Split('|').Last(), out enabled)) isParsed = false; //Check if config values are valid.
-            if (!Enum.TryParse(config[1].Split('|').Last().ToLower(), out mode)) isParsed = false;
-            if (!float.TryParse(config[2].Split('|').Last(), out scalar)) isParsed = false;
-            if (!bool.TryParse(config[3].Split('|').Last(), out avoidCameras)) isParsed = false;
-            if (!bool.TryParse(config[4].Split('|').Last(), out avoidFilters)) isParsed = false;
-            if (!isParsed)
+            try
             {
-                Console.WriteLine("[Tilted] Invalid config! Overwriting with default settings...");
-                File.WriteAllText(fullPath, DEFAULT);
-                Console.WriteLine("[Tilted] Config file created.");
-                return new ConfigInfo("");
+                if (!bool.TryParse(config[0].Split('|').Last(), out info.enabled)) isParsed = false; //Check if config values are valid.
+                if (!Enum.TryParse(config[1].Split('|').Last().ToLower(), out info.tiltedMode)) isParsed = false;
+                if (!float.TryParse(config[2].Split('|').Last(), out info.scalar)) isParsed = false;
+                if (!bool.TryParse(config[3].Split('|').Last(), out info.includeCameras)) isParsed = false;
+                if (!bool.TryParse(config[4].Split('|').Last(), out info.avoidFilters)) isParsed = false;
+                if (isParsed) return info;
             }
-            else
-                return new ConfigInfo(enabled, mode.ToString(), scalar, avoidCameras, avoidFilters);
+            catch (Exception) { } //If it messes up so bad it caused an exception, lets just overwrite it.
+            Console.WriteLine("[Tilted] Invalid config! Overwriting with default settings...");
+            File.WriteAllText(fullPath, DEFAULT);
+            Console.WriteLine("[Tilted] Config file created.");
+            return new ConfigInfo("");
         }
     }
 }

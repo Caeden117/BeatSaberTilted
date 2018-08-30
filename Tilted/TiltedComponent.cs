@@ -12,8 +12,8 @@ namespace Tilted
     class TiltedComponent : MonoBehaviour
     {
         private float tiltScalar = Config.load().scalar;
-        private bool avoidFilters = Config.load().extremeMode;
-        private bool avoidCameras = Config.load().avoidCameras;
+        private bool avoidFilters = Config.load().avoidFilters;
+        private bool includeCameras = Config.load().includeCameras;
 
         private ScoreMultiplierUIController multi;
         private ScoreController score;
@@ -73,9 +73,9 @@ namespace Tilted
                         if (obj.GetComponent<Saber>() != null) continue;
                         if (obj.GetComponent<ObstacleData>() != null) continue;
                         if (obj.GetComponent<ObstacleController>() != null) continue;
+                        if (!includeCameras)
+                            if (obj.GetComponent<Camera>() != null) continue;
                     }
-                    if (!avoidCameras && avoidFilters)
-                        if (obj.GetComponent<Camera>() != null) continue;
                     System.Random rng = new System.Random();
                     Vector3 rotationEuler = new Vector3((float)rng.NextDouble(), (float)rng.NextDouble(), (float)rng.NextDouble());
                     rotationEuler *= tiltScalar;
@@ -100,9 +100,9 @@ namespace Tilted
                     if (obj.GetComponent<Saber>() != null) continue;
                     if (obj.GetComponent<ObstacleData>() != null) continue;
                     if (obj.GetComponent<ObstacleController>() != null) continue;
+                    if (!includeCameras)
+                        if (obj.GetComponent<Camera>() != null) continue;
                 }
-                if (!avoidCameras && avoidFilters)
-                    if (obj.GetComponent<Camera>() != null) continue;
                 System.Random rng = new System.Random();
                 Vector3 rotationEuler = new Vector3((float)rng.NextDouble(), (float)rng.NextDouble(), (float)rng.NextDouble());
                 rotationEuler *= tiltScalar;
