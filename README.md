@@ -7,6 +7,6 @@ Add the release .dll to `<Beat Saber Directory>/Plugins` and start the game. A c
 # Configuration
 `enabled` *(Default: true)* | Toggles the plugin on/off.
 
-`scalar` *(Default: 10)* |  A float value of how fucked up the scene will get every time the function gets called.
+`scalar` *(Default: 10)* |  A float value of how fucked up the scene will get every time the function gets called. Negative numbers will work!
 
 `avoidFiltersBecauseYouAreAFuckingMadManAndItWillMakeBeatSaberUnplayable` *(Default: true)* | Toggles the built-in filters that make the plugin actually playable. ***BY ENABLING THIS OPTION, BEAT SABER WILL BECOME UNPLAYABLE AND MOST LIKELY CRASH WHEN EXITING A LEVEL.***

@@ -17,7 +17,7 @@ namespace Tilted
         public ConfigInfo(string randomtextbecausecsharpdoesntlikeconstructorswithnoparams)
         {
             enabled = true;
-            scalar = 1;
+            scalar = 10;
             extremeMode = false;
         }
 
@@ -47,6 +47,10 @@ Avoiding filters can and WILL make Beat Saber unplayable.
 
         public static ConfigInfo load()
         {
+            bool isParsed = true;
+            bool enabled;
+            float scalar;
+            bool avoidFilters;
             Console.WriteLine("[Tilted] Loading config file...");
             if (!File.Exists(fullPath))
             {
@@ -56,7 +60,18 @@ Avoiding filters can and WILL make Beat Saber unplayable.
                 return new ConfigInfo("");
             }
             string[] config = File.ReadAllLines(fullPath);
-            return new ConfigInfo(bool.Parse(config[0].Split('|').Last()), float.Parse(config[1].Split('|').Last()), bool.Parse(config[2].Split('|').Last()));
+            if (!bool.TryParse(config[0].Split('|').Last(), out enabled)) isParsed = false; //Check if config values are valid.
+            if (!float.TryParse(config[1].Split('|').Last(), out scalar)) isParsed = false;
+            if (!bool.TryParse(config[2].Split('|').Last(), out avoidFilters)) isParsed = false;
+            if (!isParsed)
+            {
+                Console.WriteLine("[Tilted] Invalid config! Overwriting with default settings...");
+                File.WriteAllText(fullPath, DEFAULT);
+                Console.WriteLine("[Tilted] Config file created.");
+                return new ConfigInfo("");
+            }
+            else
+                return new ConfigInfo(enabled, scalar, avoidFilters);
         }
     }
 }
