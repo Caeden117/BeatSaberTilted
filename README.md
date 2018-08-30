@@ -4,6 +4,23 @@
 # Setup
 Add the release .dll to `<Beat Saber Directory>/Plugins` and start the game. A configuration file will automatically be created in `<Beat Saber Directory>/UserData/Tilted.txt`.
 
+# Supported Plugins
+*Anything that adds custom GameObjects.* No really. Anything from:
+
+```
+CustomSabers
+CustomPlatforms
+CustomAvatars
+Perfection Display
+FullComboDisplay
+HitScoreVisualizer
+HitSwap
+TwitchIRC
+Saber Tailor
+```
+
+And a whole lot more mods will be effected by Tilted.
+
 # Configuration
 `enabled` *(Default: true)* | Toggles the plugin on/off.
 
