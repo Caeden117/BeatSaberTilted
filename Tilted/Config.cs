@@ -13,19 +13,22 @@ namespace Tilted
         public bool enabled;
         public float scalar;
         public bool extremeMode;
+        public bool avoidCameras;
 
         public ConfigInfo(string randomtextbecausecsharpdoesntlikeconstructorswithnoparams)
         {
             enabled = true;
             scalar = 10;
             extremeMode = false;
+            avoidCameras = true;
         }
 
-        public ConfigInfo(bool isEnabled, float tiltedScalar, bool avoidFilters)
+        public ConfigInfo(bool isEnabled, float tiltedScalar, bool skipCameras, bool avoidFilters)
         {
             enabled = isEnabled;
             scalar = tiltedScalar;
             extremeMode = avoidFilters;
+            avoidCameras = skipCameras;
         }
     }
 
@@ -36,6 +39,7 @@ namespace Tilted
         private const string FILE_PATH = "/UserData/Tilted.txt";
         private const string DEFAULT = @"enabled|true
 scalar|10
+avoidCameras|true
 avoidFiltersBecauseYouAreAFuckingMadManAndItWillMakeBeatSaberUnplayable|false
 
 Using this plugin will sometimes crash Beat Saber when exiting a level. I have no idea how to find a solution for this issue.
@@ -51,6 +55,7 @@ Avoiding filters can and WILL make Beat Saber unplayable.
             bool enabled;
             float scalar;
             bool avoidFilters;
+            bool avoidCameras;
             Console.WriteLine("[Tilted] Loading config file...");
             if (!File.Exists(fullPath))
             {
@@ -62,7 +67,8 @@ Avoiding filters can and WILL make Beat Saber unplayable.
             string[] config = File.ReadAllLines(fullPath);
             if (!bool.TryParse(config[0].Split('|').Last(), out enabled)) isParsed = false; //Check if config values are valid.
             if (!float.TryParse(config[1].Split('|').Last(), out scalar)) isParsed = false;
-            if (!bool.TryParse(config[2].Split('|').Last(), out avoidFilters)) isParsed = false;
+            if (!bool.TryParse(config[2].Split('|').Last(), out avoidCameras)) isParsed = false;
+            if (!bool.TryParse(config[3].Split('|').Last(), out avoidFilters)) isParsed = false;
             if (!isParsed)
             {
                 Console.WriteLine("[Tilted] Invalid config! Overwriting with default settings...");
@@ -71,7 +77,7 @@ Avoiding filters can and WILL make Beat Saber unplayable.
                 return new ConfigInfo("");
             }
             else
-                return new ConfigInfo(enabled, scalar, avoidFilters);
+                return new ConfigInfo(enabled, scalar, avoidCameras, avoidFilters);
         }
     }
 }
