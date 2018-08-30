@@ -39,7 +39,7 @@ namespace Tilted
         private const string FILE_PATH = "/UserData/Tilted.txt";
         private const string DEFAULT = @"enabled|true
 scalar|10
-avoidCameras|true
+avoidCameras|false
 avoidFiltersBecauseYouAreAFuckingMadManAndItWillMakeBeatSaberUnplayable|false
 
 Using this plugin will sometimes crash Beat Saber when exiting a level. I have no idea how to find a solution for this issue.
