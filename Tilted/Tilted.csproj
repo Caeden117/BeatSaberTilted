@@ -74,6 +74,9 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionUtil.cs" />
+    <Compile Include="ShakeDetail.cs" />
+    <Compile Include="ShakeTransform.cs" />
+    <Compile Include="TiltedCameraShake.cs" />
     <Compile Include="TiltedComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

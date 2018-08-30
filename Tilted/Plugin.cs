@@ -29,7 +29,15 @@ namespace Tilted
         private void SceneManagerOnActiveSceneChanged(Scene arg0, Scene arg1)
         {
             if (!env.Contains(arg1.name) || !enabled) return;
-            new GameObject("Tilted").AddComponent<TiltedComponent>();
+            switch (Config.load().tiltedMode)
+            {
+                case ConfigInfo.tiltedModes.standard:
+                    new GameObject("Tilted").AddComponent<TiltedComponent>();
+                    break;
+                case ConfigInfo.tiltedModes.shakecamera:
+                    new GameObject("Tilted").AddComponent<TiltedCameraShake>();
+                    break;
+            }
         }
 
         public void OnApplicationQuit()
