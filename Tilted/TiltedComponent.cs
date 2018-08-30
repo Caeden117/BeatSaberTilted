@@ -76,8 +76,7 @@ namespace Tilted
                         if (!includeCameras)
                             if (obj.GetComponent<Camera>() != null) continue;
                     }
-                    System.Random rng = new System.Random();
-                    Vector3 rotationEuler = new Vector3((float)rng.NextDouble(), (float)rng.NextDouble(), (float)rng.NextDouble());
+                    Vector3 rotationEuler = new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1));
                     rotationEuler *= tiltScalar;
                     obj.transform.rotation = Quaternion.Euler(obj.transform.rotation.eulerAngles + rotationEuler);
                     if (obj.transform.childCount > 0)

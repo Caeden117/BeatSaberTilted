@@ -61,25 +61,21 @@ Avoiding filters can and WILL make Beat Saber unplayable.";  //Lots of spaces fo
             ConfigInfo info = new ConfigInfo();
             bool isParsed = true;
             Console.WriteLine("[Tilted] Loading config file...");
-            if (!File.Exists(fullPath))
+            if (File.Exists(fullPath))
             {
-                Console.WriteLine("[Tilted] No config found! Creating default config...");
-                File.WriteAllText(fullPath, DEFAULT);
-                Console.WriteLine("[Tilted] Config file created.");
-                return new ConfigInfo("");
+                string[] config = File.ReadAllLines(fullPath);
+                try
+                {
+                    if (!bool.TryParse(config[0].Split('|').Last(), out info.enabled)) isParsed = false; //Check if config values are valid.
+                    if (!Enum.TryParse(config[1].Split('|').Last().ToLower(), out info.tiltedMode)) isParsed = false;
+                    if (!float.TryParse(config[2].Split('|').Last(), out info.scalar)) isParsed = false;
+                    if (!bool.TryParse(config[3].Split('|').Last(), out info.includeCameras)) isParsed = false;
+                    if (!bool.TryParse(config[4].Split('|').Last(), out info.avoidFilters)) isParsed = false;
+                    if (isParsed) return info;
+                }
+                catch (Exception) { } //If it messes up so bad it caused an exception, lets just overwrite it.
             }
-            string[] config = File.ReadAllLines(fullPath);
-            try
-            {
-                if (!bool.TryParse(config[0].Split('|').Last(), out info.enabled)) isParsed = false; //Check if config values are valid.
-                if (!Enum.TryParse(config[1].Split('|').Last().ToLower(), out info.tiltedMode)) isParsed = false;
-                if (!float.TryParse(config[2].Split('|').Last(), out info.scalar)) isParsed = false;
-                if (!bool.TryParse(config[3].Split('|').Last(), out info.includeCameras)) isParsed = false;
-                if (!bool.TryParse(config[4].Split('|').Last(), out info.avoidFilters)) isParsed = false;
-                if (isParsed) return info;
-            }
-            catch (Exception) { } //If it messes up so bad it caused an exception, lets just overwrite it.
-            Console.WriteLine("[Tilted] Invalid config! Overwriting with default settings...");
+            Console.WriteLine("[Tilted] Invalid or non-existing config! Overwriting with default settings...");
             File.WriteAllText(fullPath, DEFAULT);
             Console.WriteLine("[Tilted] Config file created.");
             return new ConfigInfo("");

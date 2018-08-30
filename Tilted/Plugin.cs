@@ -14,7 +14,7 @@ namespace Tilted
         //Config code based off of HitScoreVisualizer config code by artemiswkearney (Except simplified by a shit ton).
 
         public string Name => "Tilted";
-        public string Version => "1.1.0";
+        public string Version => "1.1.1";
 
         private readonly string[] env = { "DefaultEnvironment", "BigMirrorEnvironment", "TriangleEnvironment", "NiceEnvironment" };
 
