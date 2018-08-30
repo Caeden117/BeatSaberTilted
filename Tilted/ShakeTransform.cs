@@ -20,7 +20,7 @@ namespace Tilted
             public ShakeEvent(ShakeDetail data)
             {
                 this.data = data;
-                duration = data.amplitude;
+                duration = 0.5f;
                 timeRemaining = duration;
 
                 float rand = 32.0f;
