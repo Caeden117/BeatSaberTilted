@@ -1,3 +1,7 @@
+<video controls>
+	<source src="https://i.imgur.com/CFesqPf.mp4" type="video/mp4">
+</video>
+
 # Tilted - A Beat Saber Plugin
 A plugin that fucks up the scene when you fuck up. *This plugin may crash the game when exiting the level.*
 
