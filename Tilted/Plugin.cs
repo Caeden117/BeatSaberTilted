@@ -41,6 +41,7 @@ namespace Tilted
                 if (newText != null)
                 {
                     string[] modeText = new string[] { "Screw up the scene.", "Shake every external camera." };
+                    if (Config.load().shakeNotes) modeText[1] = "Shake every external camera and any existing notes.";
                     newText.text += String.Format("\n\n<color=#FF0000><size=200%>Tilted Plugin (Version {0}) by Caeden117</size></color>\n\n", Version);
                     if (Config.load().avoidFilters)
                     {

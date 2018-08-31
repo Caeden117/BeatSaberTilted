@@ -62,13 +62,14 @@ namespace Tilted
         {
             return Task.Run(() =>
             {
-                foreach (GameObject obj in SceneManager.GetActiveScene().GetRootGameObjects())
+                foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
                 {
-                    if (obj.GetComponent<Camera>() != null || (Config.load().shakeNotes && obj.GetComponent<NoteData>() != null))
+                    if (!obj.activeInHierarchy) continue;
+                    if (obj.GetComponent<Camera>() != null || (Config.load().shakeNotes && obj.GetComponent<NoteFloorMovement>() != null))
                     {
                         if (obj.GetComponent<ShakeTransform>() == null)
                             obj.AddComponent<ShakeTransform>();
-                        obj.GetComponent<ShakeTransform>().AddShakeEvent(new ShakeDetail(scalar));
+                        obj.GetComponent<ShakeTransform>().AddShakeEvent(new ShakeDetail(scalar * (obj.GetComponent<NoteFloorMovement>() == null ? 1f : 10f)));
                     }
                     if (obj.transform.childCount > 0)
                     {
@@ -83,7 +84,7 @@ namespace Tilted
             for (var i = 0; i < parent.transform.childCount; i++)
             {
                 GameObject obj = parent.transform.GetChild(i).gameObject;
-                if (obj.GetComponent<Camera>() != null || (Config.load().shakeNotes && obj.GetComponent<NoteData>() != null))
+                if (obj.GetComponent<Camera>() != null || (Config.load().shakeNotes && obj.GetComponent<NoteFloorMovement>() != null))
                 {
                     if (obj.GetComponent<ShakeTransform>() == null)
                         obj.AddComponent<ShakeTransform>();
