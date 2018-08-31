@@ -24,7 +24,7 @@ And a whole lot more mods will be effected by Tilted.
 # Configuration
 `enabled` *(Default: true)* | Toggles the plugin on/off.
 
-`mode` *(Default: standard)* | Changes plugin mode from `standard`, how it was meant to be played, and `shakeCamera`, where any and all cameras would shake when you hit a note.
+`mode` *(Default: standard)* | Changes plugin mode from `standard`, how it was meant to be played, and `shakeCamera`, where any and all external cameras would shake when you hit a note.
 
 `scalar` *(Default: 10)* |  A float value of how fucked up the scene will get (or how hard the cameras should shake) every time the function gets called. Negative numbers will work!
 

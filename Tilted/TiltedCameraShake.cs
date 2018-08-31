@@ -64,7 +64,7 @@ namespace Tilted
             {
                 foreach (GameObject obj in SceneManager.GetActiveScene().GetRootGameObjects())
                 {
-                    if (obj.GetComponent<Camera>() != null)
+                    if (obj.GetComponent<Camera>() != null || (Config.load().shakeNotes && obj.GetComponent<NoteData>() != null))
                     {
                         if (obj.GetComponent<ShakeTransform>() == null)
                             obj.AddComponent<ShakeTransform>();
@@ -83,7 +83,7 @@ namespace Tilted
             for (var i = 0; i < parent.transform.childCount; i++)
             {
                 GameObject obj = parent.transform.GetChild(i).gameObject;
-                if (obj.GetComponent<Camera>() != null)
+                if (obj.GetComponent<Camera>() != null || (Config.load().shakeNotes && obj.GetComponent<NoteData>() != null))
                 {
                     if (obj.GetComponent<ShakeTransform>() == null)
                         obj.AddComponent<ShakeTransform>();

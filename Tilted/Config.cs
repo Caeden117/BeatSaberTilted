@@ -14,6 +14,7 @@ namespace Tilted
         public float scalar;
         public bool avoidFilters;
         public bool includeCameras;
+        public bool shakeNotes;
         public enum tiltedModes { standard, shakecamera };
         public tiltedModes tiltedMode;
 
@@ -24,15 +25,17 @@ namespace Tilted
             avoidFilters = false;
             includeCameras = true;
             tiltedMode = tiltedModes.standard;
+            shakeNotes = true;
         }
 
-        public ConfigInfo(bool isEnabled, string mode, float tiltedScalar, bool skipCameras, bool avoidFilters)
+        public ConfigInfo(bool isEnabled, string mode, float tiltedScalar, bool skipCameras, bool shakeNotes, bool avoidFilters)
         {
             enabled = isEnabled;
             scalar = tiltedScalar;
             this.avoidFilters = avoidFilters;
             includeCameras = skipCameras;
             tiltedMode = (tiltedModes)Enum.Parse(typeof(tiltedModes), mode);
+            this.shakeNotes = shakeNotes;
         }
     }
 
@@ -45,8 +48,8 @@ namespace Tilted
 mode|standard
 scalar|10
 includeCameras|false
+cameraShake_AlsoShakeNotes|true
 avoidFiltersBecauseYouAreAFuckingMadManAndItWillMakeBeatSaberUnplayable|false
-
 
 
 
@@ -70,7 +73,8 @@ Avoiding filters can and WILL make Beat Saber unplayable.";  //Lots of spaces fo
                     if (!Enum.TryParse(config[1].Split('|').Last().ToLower(), out info.tiltedMode)) isParsed = false;
                     if (!float.TryParse(config[2].Split('|').Last(), out info.scalar)) isParsed = false;
                     if (!bool.TryParse(config[3].Split('|').Last(), out info.includeCameras)) isParsed = false;
-                    if (!bool.TryParse(config[4].Split('|').Last(), out info.avoidFilters)) isParsed = false;
+                    if (!bool.TryParse(config[4].Split('|').Last(), out info.shakeNotes)) isParsed = false;
+                    if (!bool.TryParse(config[5].Split('|').Last(), out info.avoidFilters)) isParsed = false;
                     if (isParsed) return info;
                 }
                 catch (Exception) { } //If it messes up so bad it caused an exception, lets just overwrite it.

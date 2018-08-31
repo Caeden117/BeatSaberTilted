@@ -16,7 +16,7 @@ namespace Tilted
         //Config code based off of HitScoreVisualizer config code by artemiswkearney (Except simplified by a shit ton).
 
         public string Name => "Tilted";
-        public string Version => "1.2.0";
+        public string Version => "1.1.6";
 
         private readonly string[] env = { "DefaultEnvironment", "BigMirrorEnvironment", "TriangleEnvironment", "NiceEnvironment" };
 
@@ -42,7 +42,7 @@ namespace Tilted
                 {
                     string[] modeText = new string[] { "Screw up the scene.", "Shake every external camera." };
                     newText.text += String.Format("\n\n<color=#FF0000><size=200%>Tilted Plugin (Version {0}) by Caeden117</size></color>\n\n", Version);
-                    if (Config.load().avoidFilters && Config.load().tiltedMode == ConfigInfo.tiltedModes.standard)
+                    if (Config.load().avoidFilters)
                     {
                         newText.text += "<color=#FF0000><size=200%>I hope you know what you're getting into.</size></color>\n\n" +
                             "If you are seeing this text, then you have disabled the built-in filters for the plugin.\n" + 
