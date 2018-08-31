@@ -48,7 +48,7 @@ namespace Tilted
 mode|standard
 scalar|10
 includeCameras|false
-cameraShake_AlsoShakeNotes|true
+shakeCamera_AlsoShakeNotes|true
 avoidFiltersBecauseYouAreAFuckingMadManAndItWillMakeBeatSaberUnplayable|false
 
 

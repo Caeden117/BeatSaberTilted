@@ -30,6 +30,8 @@ And a whole lot more mods will be effected by Tilted.
 
 `includeCameras` *(Default: false)* | Avoids GameObjects with Cameras tied to them. This ensures any outside Cameras (CameraPlus first/third person, Dynamic Camera, etc.) do not get messed with. ***Ignored when `avoidFilters` is enabled.***
 
+`shakeCamera_AlsoShakeNotes` *(Default: true)* | Because the plugin cannot modify the main camera in game (Players will not notice a shake), notes can now shake as well.
+
 `avoidFiltersBecauseYouAreAFuckingMadManAndItWillMakeBeatSaberUnplayable` *(Default: false)* | Toggles the built-in filters that make the plugin actually playable. ***BY ENABLING THIS OPTION, BEAT SABER WILL BECOME UNPLAYABLE AND MOST LIKELY CRASH WHEN EXITING A LEVEL.***
 
 # Advanced Details

@@ -69,7 +69,7 @@ namespace Tilted
                     {
                         if (obj.GetComponent<ShakeTransform>() == null)
                             obj.AddComponent<ShakeTransform>();
-                        obj.GetComponent<ShakeTransform>().AddShakeEvent(new ShakeDetail(scalar * (obj.GetComponent<NoteFloorMovement>() == null ? 1f : 10f)));
+                        obj.GetComponent<ShakeTransform>().AddShakeEvent(new ShakeDetail(scalar * (obj.GetComponent<NoteFloorMovement>() == null ? 1f : 5f)));
                     }
                     if (obj.transform.childCount > 0)
                     {
@@ -88,7 +88,7 @@ namespace Tilted
                 {
                     if (obj.GetComponent<ShakeTransform>() == null)
                         obj.AddComponent<ShakeTransform>();
-                    obj.GetComponent<ShakeTransform>().AddShakeEvent(new ShakeDetail(scalar));
+                    obj.GetComponent<ShakeTransform>().AddShakeEvent(new ShakeDetail(scalar * (obj.GetComponent<NoteFloorMovement>() == null ? 1f : 5f)));
                 }
                 if (obj.transform.childCount > 0)
                 {
