@@ -15,7 +15,7 @@ namespace Tilted
         public bool avoidFilters;
         public bool includeCameras;
         public bool shakeNotes;
-        public enum tiltedModes { standard, shakecamera };
+        public enum tiltedModes { standard, shakecamera, armageddon };
         public tiltedModes tiltedMode;
 
         public ConfigInfo(string randomtextbecausecsharpdoesntlikeconstructorswithnoparams)

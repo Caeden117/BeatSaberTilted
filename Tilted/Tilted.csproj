@@ -80,6 +80,7 @@
     <Compile Include="ReflectionUtil.cs" />
     <Compile Include="ShakeDetail.cs" />
     <Compile Include="ShakeTransform.cs" />
+    <Compile Include="TiltedArmageddon.cs" />
     <Compile Include="TiltedCameraShake.cs" />
     <Compile Include="TiltedComponent.cs" />
   </ItemGroup>

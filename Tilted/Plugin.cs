@@ -40,7 +40,7 @@ namespace Tilted
                         newText = bob;
                 if (newText != null)
                 {
-                    string[] modeText = new string[] { "Screw up the scene.", "Shake every external camera." };
+                    string[] modeText = new string[] { "Screw up the scene.", "Shake every external camera.", "Armageddon." };
                     if (Config.load().shakeNotes) modeText[1] = "Shake every external camera and any existing notes.";
                     newText.text += String.Format("\n\n<color=#FF0000><size=200%>Tilted Plugin (Version {0}) by Caeden117</size></color>\n\n", Version);
                     if (Config.load().avoidFilters)
@@ -50,6 +50,13 @@ namespace Tilted
                             "When losing a combo, GameObjects that are key for the game to work properly (mainly Note/Obstacle spawning) will also be effected.\n" +
                             "This will, unless by some act of god you're able to live through the carnage, make the level unbeatable and may crash the game.\n" +
                             "<color=#FF0000><size=150%>This is a warning of what's to come.</size></color>";
+                    }
+                    else if (Config.load().tiltedMode == ConfigInfo.tiltedModes.armageddon)
+                    {
+                        newText.text += "<color=#FF0000><size=250%>THIS WILL CRASH BEAT SABER.</size></color>\n\n" +
+                            "Armageddon loops through every active GameObject that is loaded. This includes EVERYTHING.\n\n" +
+                            "Every plugin. Every platform. Every avatar. Everything will be effected by Armageddon.\n\n" +
+                            "Continue at your own risk.";
                     }
                     else
                     {
@@ -75,6 +82,9 @@ namespace Tilted
                     break;
                 case ConfigInfo.tiltedModes.shakecamera:
                     new GameObject("Tilted").AddComponent<TiltedCameraShake>();
+                    break;
+                case ConfigInfo.tiltedModes.armageddon:
+                    new GameObject("Tilted").AddComponent<TiltedArmageddon>();
                     break;
             }
         }
